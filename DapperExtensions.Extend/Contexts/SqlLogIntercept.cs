@@ -3,10 +3,10 @@ using Castle.DynamicProxy;
 
 namespace DapperExtensions.Extend
 {
-    internal class SqlLogInterceptor : IInterceptor
+    public class SqlLogInterceptor : IInterceptor
     {
         SqlBuilder _builder;
-        public SqlLogInterceptor(string appConfigKey, string dbType = DbType.MySql)
+        public SqlLogInterceptor(string dbType = DbType.MySql)
         {
             _builder = new SqlBuilder(SqlFactory.GetDapperConfiguration(dbType));
         }

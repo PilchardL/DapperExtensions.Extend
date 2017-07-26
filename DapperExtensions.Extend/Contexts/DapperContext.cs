@@ -24,6 +24,10 @@ namespace DapperExtensions.Extend
             {
                 return _db;
             }
+            set
+            {
+                value = _db;
+            }
         }
         public DapperContext(string appConfigKey, string dbType = DbType.MySql)
         {

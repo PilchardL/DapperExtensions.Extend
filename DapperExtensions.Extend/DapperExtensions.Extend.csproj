@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\CallLogger.cs" />
     <Compile Include="Contexts\DapperContext.cs" />
     <Compile Include="Contexts\DbFiled.cs" />
     <Compile Include="Contexts\DbType.cs" />

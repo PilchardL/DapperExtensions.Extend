@@ -2,7 +2,6 @@
 using DapperExtensions.Extend;
 using System.Linq;
 using System.Web.Http;
-
 namespace ApiDemo.Controllers
 {
     [RoutePrefix("users2")]
@@ -14,8 +13,8 @@ namespace ApiDemo.Controllers
         [HttpGet]
         public IHttpActionResult GetUsers()
         {
-            var list = userRespo.GetList(x => x.Age > 21 && x.Name.StartsWith("7G"), null);
-            return Json(list);
+            var list = userRespo.GetList(x => x.Age > 21, null);
+            return Json(new { data = list });
         }
 
         [Route("add")]

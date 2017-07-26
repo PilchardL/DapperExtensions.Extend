@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using DapperExtensions.Extend;
-using System.Reflection;
 using System.Web.Http;
 
 namespace ApiDemo.App_Start
@@ -11,19 +10,16 @@ namespace ApiDemo.App_Start
         public static void Execute(HttpConfiguration config)
         {
             ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterApiControllers(typeof(WebApiApplication).Assembly).PropertiesAutowired().InstancePerRequest();//注册API
             RegisterInterface(builder);
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired().InstancePerRequest();//注册API
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
         static void RegisterInterface(ContainerBuilder builder)
         {
-            //sql
-            builder.RegisterAssemblyTypes(Assembly.Load("DapperExtensions.Extend")).AsImplementedInterfaces().InstancePerRequest();
-          
-            builder.Register<IDapperContext>(c => new DapperContext("db")).InstancePerRequest();
-
+            System.AppDomain.CurrentDomain.SetData("debug", true);
+            builder.Register<IDapperContext>(c => new DapperContext("db")).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(RespositoryBase<>)).As(typeof(IRespositoryBase<>));
         }
     }

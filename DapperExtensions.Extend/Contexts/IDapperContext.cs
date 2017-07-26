@@ -88,6 +88,6 @@ namespace DapperExtensions.Extend
         /// <param name="transaction"></param>
         /// <param name="commandTimeout"></param>
         /// <returns></returns>
-        IEnumerable<T> GetList<T>(IPredicate predicate, IList<ISort> sort,  int? commandTimeout = default(int?)) where T : class;
+        IEnumerable<T> GetList<T>(IPredicate predicate, IList<ISort> sort, int? commandTimeout = default(int?)) where T : class;
     }
 }
