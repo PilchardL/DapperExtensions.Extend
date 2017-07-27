@@ -1,7 +1,7 @@
 ﻿using ApiDemo.Models;
 using DapperExtensions.Extend;
-using System.Linq;
 using System.Web.Http;
+
 namespace ApiDemo.Controllers
 {
     [RoutePrefix("users2")]

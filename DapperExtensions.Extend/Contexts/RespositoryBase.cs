@@ -1,9 +1,10 @@
-﻿using Castle.DynamicProxy;
+﻿#define DEBUG
+using Castle.DynamicProxy;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
+
 
 namespace DapperExtensions.Extend
 {
@@ -11,16 +12,15 @@ namespace DapperExtensions.Extend
     {
         IDapperContext _context;
         static readonly ProxyGenerator _generator = new ProxyGenerator();
-        static readonly bool _isDebug = (bool)AppDomain.CurrentDomain.GetData("debug");
+
         public IDapperContext Context { get { return _context; } }
 
         public RespositoryBase(IDapperContext context)
         {
             _context = context;
-            if (_isDebug)
-            {
-                _context = _generator.CreateInterfaceProxyWithTarget(context, new SqlLogInterceptor());
-            }
+#if DEBUG
+            _context = _generator.CreateInterfaceProxyWithTarget(context, new SqlLogInterceptor(context.DBType));
+#endif
         }
 
         #region 同步方法

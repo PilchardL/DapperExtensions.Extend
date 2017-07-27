@@ -10,6 +10,11 @@ namespace DapperExtensions.Extend
         /// </summary>
         IDbConnection DB { get; }
         /// <summary>
+        /// 数据库类型
+        /// </summary>
+        string DBType { get; }
+
+        /// <summary>
         /// sql查询
         /// </summary>
         /// <typeparam name="TReturn"></typeparam>

@@ -22,6 +22,9 @@ namespace DapperExtensions.Extend
                 case "GetPage":
                     sql = _builder.GetPagingWithMySql(entityType, args[0] as IPredicate, args[1] as IList<ISort>, int.Parse(args[2].ToString()), int.Parse(args[3].ToString()));
                     break;
+                case "GetList":
+                    sql = _builder.GetList(entityType, args[0] as IPredicate, args[1] as IList<ISort>);
+                    break;
             }
             WriteSqlToConsole(sql);
             invocation.Proceed();

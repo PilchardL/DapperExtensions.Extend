@@ -7,6 +7,7 @@ namespace DapperExtensions.Extend
 {
     public class DapperContext : IDapperContext
     {
+        string _dbType { get; set; }
         /// <summary>
         /// dapper数据库连接实例
         /// </summary>
@@ -24,14 +25,17 @@ namespace DapperExtensions.Extend
             {
                 return _db;
             }
-            set
-            {
-                value = _db;
-            }
         }
+
+        public string DBType
+        {
+            get { return _dbType; }
+        }
+
         public DapperContext(string appConfigKey, string dbType = DbType.MySql)
         {
             _db = SqlFactory.GetDbInstance(appConfigKey, dbType);
+            _dbType = dbType;
             _db.Open();
             _builder = new SqlBuilder(SqlFactory.GetDapperConfiguration(dbType));
         }
