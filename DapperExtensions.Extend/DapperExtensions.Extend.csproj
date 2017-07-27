@@ -63,7 +63,7 @@
     <Compile Include="Contexts\IDapperContext.cs" />
     <Compile Include="Contexts\IRespositoryBase.cs" />
     <Compile Include="Contexts\RespositoryBase.cs" />
-    <Compile Include="Contexts\SqlBuilder.cs" />
+    <Compile Include="SqlBuilder\SqlBuilder.cs" />
     <Compile Include="Contexts\SqlFactory.cs" />
     <Compile Include="Contexts\SqlLogIntercept.cs" />
     <Compile Include="Expressions\ExpressionEx.cs" />
@@ -73,14 +73,13 @@
     <Compile Include="Expressions\QueryBuilder.cs" />
     <Compile Include="Expressions\SortingEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlBuilder\SqlQueryBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Respositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

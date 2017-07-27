@@ -11,19 +11,18 @@ namespace ApiDemo.Controllers
 {
     public class UserController : ApiController
     {
-        private IDapperContext context = new DapperContext("db");
-        private IRespositoryBase<user> userRespo;
+        private SqlQueryBuilder builder;
 
         public UserController()
         {
-            userRespo = new RespositoryBase<user>(context);
+            builder = new SqlQueryBuilder();
         }
-
         [HttpGet]
         public IHttpActionResult GetUsers()
         {
-            var list = userRespo.GetList(x => x.Age > 21 && x.Name.StartsWith("7G"), null).ToList();
-            return Json(list);
+            //var sql = context.Join<user, user>((x, y) => x.Id == y.Id && x.Name == x.Name);
+            var sql = builder.Select<user>(x => x.Id);
+            return Json(sql);
         }
     }
 }
